@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-
 @Pipe({ name: 'values',  pure: false })
 export class ValuesPipe implements PipeTransform {
   transform(value, args:string[]) : any {
@@ -11,7 +10,6 @@ export class ValuesPipe implements PipeTransform {
     return keys;
   }
 }
-
 
 @Pipe({ name: 'arrayify'})
 export class ArrayifyPipe {
