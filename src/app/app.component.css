@@ -1,0 +1,252 @@
+/**********************************************************
+* 
+* COLORS:
+* --main-primary: #134C96
+**********************************************************
+* FONTS: */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+
+/* /FONTS: *
+**********************************************************/
+
+
+/**********************************************************
+* GLOBAL: */
+
+html,
+body {
+    margin: 0;
+    height: 100%;
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #222222;
+    font-weight: bold;
+}
+
+
+/* /GLOBAL: *
+**********************************************************/
+
+
+/**********************************************************
+* NAVBAR: */
+
+.navbar {
+    height: 64px;
+    background-color: #222222;
+    border-radius: 0 !important;
+}
+
+.navbar .nav {
+    margin-top: 5px;
+}
+
+.navbar-header {
+    margin-left: 30px;
+}
+
+.navbar-brand>img {
+    height: 32px;
+}
+
+.navbar .navbar-nav>li>a {
+    color: #FFF;
+    text-transform: uppercase;
+}
+
+.nav .open>a {
+    background-color: #134C96;
+}
+
+.navbar .navbar-nav>li>a:hover,
+.navbar .navbar-nav>li>a:focus,
+.navbar .navbar-nav>li>a:active {
+    background-color: #134C96;
+    color: #FFF;
+}
+
+.navbar .navbar-nav>li>ul>li>a {
+    cursor: pointer;
+    color: #000;
+}
+
+.navbar .navbar-nav>li>ul>li>a:hover {
+    color: #FFF;
+    background-color: #134C96;
+}
+
+
+/* /NAVBAR: *
+**********************************************************/
+
+
+/**********************************************************
+* MAIN: */
+
+.main {
+    margin: -20px 50px 0 0;
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color: #F9F9F9;
+    overflow-x: auto;
+    padding-bottom: 100px;
+}
+
+.title {
+    padding-top: 35px;
+    color: #134C96;
+    font-weight: bold;
+    font-size: large;
+}
+
+.description {
+    margin: 55px;
+    color: #828282;
+    font-size: 2ch;
+}
+
+.main>hr {
+    background-color: #ddd;
+    border: 0 none;
+    color: #000;
+    height: 1px;
+}
+
+.main>h4 {
+    padding-top: 100px;
+}
+
+.main>.container {
+    padding-top: 30px;
+}
+
+
+/* /MAIN: *
+**********************************************************/
+
+.json-input {
+    position: relative;
+    margin: 0px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+
+.json-input input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+
+.json-input-title {
+    margin-left: 2px;
+}
+
+.checkbox-inline {
+    margin-top: 0px;
+}
+
+.checkbox input[type=checkbox],
+input[type="checkbox"] {
+    position: absolute;
+    visibility: hidden;
+    margin-top: 0;
+    margin-left: -22px;
+}
+
+.checkbox input[type=checkbox]:disabled,
+input[type="checkbox"]:disabled {
+    opacity: 0.65;
+}
+
+input[type="checkbox"]:checked:after,
+input[type="checkbox"]:after {
+    visibility: visible;
+    font-family: FontAwesome;
+    display: inline-block;
+    color: #333333;
+}
+
+input[type="checkbox"]:checked:after:disabled,
+input[type="checkbox"]:after:disabled {
+    cursor: not-allowed;
+    opacity: 0.65;
+}
+
+input[type="checkbox"]:checked:after {
+    font-size: 18px;
+    content: "\f14a";
+}
+
+input[type="checkbox"]:after {
+    font-size: 20px;
+    content: "\f096";
+}
+
+.comment-block {
+    padding: 2rem;
+    background-color: #EEEEEE;
+    vertical-align: top;
+    border-radius: 0.1875rem;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.08);
+}
+
+.comment-block textarea {
+    width: 100%;
+    resize: none;
+}
+
+.comment-text {
+    margin-bottom: 1.25rem;
+}
+
+.bottom-comment {
+    color: #acb4c2;
+    font-size: 0.875rem;
+}
+
+.comment-date {
+    float: left;
+}
+
+.comment-actions {
+    float: right;
+}
+
+.comment-actions li {
+    display: inline;
+    margin: -2px;
+    cursor: pointer;
+}
+
+.comment-actions li.complain {
+    padding-right: 0.75rem;
+}
+
+.comment-actions li.reply {
+    border-left: 1px solid #e1e5eb;
+    padding: 0 0.75rem;
+}
+
+.comment-actions li:hover {
+    color: #222222;
+}
