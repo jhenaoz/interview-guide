@@ -234,7 +234,6 @@ input[type="checkbox"]:after {
 
 .comment-actions li {
     display: inline;
-    margin: -2px;
     cursor: pointer;
 }
 

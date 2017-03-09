@@ -24,16 +24,24 @@
                     <div class="btn btn-default json-input">
                         <i class="fa fa-folder" aria-hidden="true"></i>
                         <span class="json-input-title">Browse</span>
-                        <input type="file" id="myFileInputField" ([ngModel])="data" name="data" (change)="ngOnChanges($event)">
+                        <input type="file" 
+                               id="myFileInputField" 
+                               ([ngModel])="data" 
+                               name="data" 
+                               (change)="ngOnChanges($event)">
                     </div>
                 </div>
             </div>
+
             <br>
-            <button class="btn btn-default btn-block" (click)="print()"><i class="fa fa-hand-spock-o" aria-hidden="true"></i> Generate</button>
 
-
+            <button class="btn btn-default btn-block" 
+                    (click)="print()">
+                    <i class="fa fa-hand-spock-o" aria-hidden="true"></i> Generate
+            </button>
         </div>
     </div>
+
     <div class="hide" id="text_helper"></div>
 
     <div class="container">
@@ -41,44 +49,87 @@
             <div *ngFor="let key of keys">
                 <div class="col-md-2">
                     <div class="checkbox">
-                        <label><input #cb1 class="styled" type="checkbox" (change)="logCheckbox(cb1)" value="{{ key }}">{{ key | uppercase }}</label>
+                        <label>
+                            <input #cb1 class="styled" 
+                                   type="checkbox" 
+                                   (change)="logCheckbox(cb1)" 
+                                   value="{{ key }}">
+                                   {{ key | uppercase }}
+                        </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-
     <div class="container">
         <div *ngFor="let value of questions, let i=index">
             <div *ngFor="let question of value?.questions | values, let y=index">
-                <span class="badge" style="margin-bottom: -20px; background-color: #000">{{ value.key | uppercase }}</span>
-                <div class="comment-block">
-                    <p class="comment-text"> {{ question.value.question }}</p>
+
+
+                <span class="badge" style="margin-bottom: -20px; background-color: #000">
+                    {{ value.key | uppercase }}
+                </span>
+                
+                <label class="pull-right" style="margin-top: 25px">
+                <input lass="styled" 
+                    type="checkbox">
+                </label>
+
+                <span class="badge pull-right hide" id="badge{{i}}{{y}}" 
+                      style="margin-bottom: -10px; background-color: #000">
+                    <i class="fa fa-check-circle-o fa-2x" aria-hidden="true"></i>
+                </span>
+                  
+                <div class="comment-block" id="comment-block{{i}}{{y}}">
+                    <p class="comment-text"> 
+                        {{ question.value.question }}
+                    </p>
                     <div class="bottom-comment">
                         <ul class="comment-actions">
-                            <li class="complain" role="button" data-toggle="collapse" attr.href="#collapse-answer{{i}}{{y}}" aria-expanded="false" attr.aria-controls="collapse-answer{{i}}{{y}}">Answer</li>
-                            <li class="reply" role="button" data-toggle="collapse" attr.href="#collapse-hint{{i}}{{y}}" aria-expanded="false" attr.aria-controls="collapse-hint{{i}}{{y}}">Hint</li>
-                            <li class="reply" role="button" data-toggle="collapse" attr.href="#collapse-nested{{i}}{{y}}" aria-expanded="false" attr.aria-controls="collapse-nested{{i}}{{y}}">Nested</li>
+                            <li class="complain" role="button" data-toggle="collapse" 
+                                attr.href="#collapse-answer{{i}}{{y}}" 
+                                aria-expanded="false" 
+                                attr.aria-controls="collapse-answer{{i}}{{y}}">
+                                Answer
+                            </li>
+                            <li class="reply" role="button" data-toggle="collapse" 
+                                attr.href="#collapse-hint{{i}}{{y}}" 
+                                aria-expanded="false" 
+                                attr.aria-controls="collapse-hint{{i}}{{y}}">
+                                Hint
+                            </li>
+                            <li class="reply" role="button" data-toggle="collapse" 
+                                attr.href="#collapse-nested{{i}}{{y}}" 
+                                aria-expanded="false" 
+                                attr.aria-controls="collapse-nested{{i}}{{y}}">
+                                Nested
+                            </li>
                         </ul>
                     </div>
                 </div>
+
                 <br>
+
                 <div class="collapse" id="collapse-answer{{i}}{{y}}">
                     <div class="well">
-                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> {{ question.value.answer }}
+                        <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
+                        {{ question.value.answer }}
                     </div>
                 </div>
                 <div class="collapse" id="collapse-hint{{i}}{{y}}">
                     <div class="well">
-                        <i class="fa fa-plus-square" aria-hidden="true"></i> {{ question.value.hint }}
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> 
+                        {{ question.value.hint }}
                     </div>
                 </div>
                 <div class="collapse" id="collapse-nested{{i}}{{y}}">
                     <div class="well">
-                        <i class="fa fa-question-circle" aria-hidden="true"></i> {{ question.value.nested[0].question }}
+                        <i class="fa fa-question-circle" aria-hidden="true"></i> 
+                        {{ question.value.nested[0].question }}
                         <br>
-                        <i class="fa fa-plus-square" aria-hidden="true"></i> {{ question.value.nested[0].hint }}
+                        <i class="fa fa-plus-square" aria-hidden="true"></i> 
+                        {{ question.value.nested[0].hint }}
                     </div>
                 </div>
             </div>
