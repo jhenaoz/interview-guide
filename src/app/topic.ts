@@ -1,7 +1,7 @@
 export class Topic {
     public key: string;
     public questions: any[];
-    
+
     constructor(){}
 
     static fromJSON(json: any): Topic {

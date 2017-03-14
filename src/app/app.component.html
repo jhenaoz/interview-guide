@@ -69,100 +69,98 @@
     </div>
     </div>
 
-    <div class="container">
-        <form [formGroup]="interviewForm"
-              novalidate>
-              <div formArrayName="questionContainer" 
-                        *ngFor="let container of questionContainer.value, let i=index">
-                       
-                        <div [formGroupName]="i">
-                        <span class="badge" style="margin-bottom: -20px; background-color: #000">
-                        {{ container.key | uppercase}}
-                        </span>
 
-                        <div class="checkbox pull-right">
-                        <label>
-                        <input  class="styled" 
-                                type="checkbox" 
-                                formControlName="checked">
-                                {{ key | uppercase }}
-                        </label>
-                        </div>
-                        {{ checked }}
-                        <div class="comment-block">
-                        <p class="comment-text"> 
-                        {{ container.questions.question }}
-                        </p>
-                        <div class="bottom-comment">
-                        <ul class="comment-actions">
-                            <li class="complain" role="button" data-toggle="collapse" 
-                                attr.href="#collapse-answer{{i}}" 
-                                aria-expanded="false" 
-                                attr.aria-controls="collapse-answer{{i}}">
-                                Answer
-                            </li>
-                            <li class="reply" role="button" data-toggle="collapse" 
-                                attr.href="#collapse-hint{{i}}" 
-                                aria-expanded="false" 
-                                attr.aria-controls="collapse-hint{{i}}">
-                                Hint
-                            </li>
-                            <li class="reply" role="button" data-toggle="collapse" 
-                                attr.href="#collapse-nested{{i}}" 
-                                aria-expanded="false" 
-                                attr.aria-controls="collapse-nested{{i}}">
-                                Nested
-                            </li>
-                             <li class="reply" role="button" data-toggle="collapse" 
-                                attr.href="#collapse-response{{i}}" 
-                                aria-expanded="false" 
-                                attr.aria-controls="collapse-response{{i}}">
-                                Response
-                            </li>
-                        </ul>
-                        </div>
-                        </div>
 
-                        <br>
+     <div class="container">
+          <form class="form-horizontal"
+              novalidate
+              (ngSubmit)="onSubmit(controlForm)"
+              #controlForm="ngForm">
 
-                        <div class="collapse" id="collapse-answer{{i}}">
-                            <div class="well">
-                                <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
-                                {{ container.questions.answer }}
-                            </div>
-                        </div>
-                        <div class="collapse" id="collapse-hint{{i}}">
-                            <div class="well">
-                                <i class="fa fa-plus-square" aria-hidden="true"></i> 
-                                {{ container.questions.hint }}
-                            </div>
-                        </div>
-                        <div class="collapse" id="collapse-nested{{i}}">
-                            <div class="well">
-                                <i class="fa fa-question-circle" aria-hidden="true"></i> 
-                                {{ container.questions.nested[0].question }}
-                                <br>
-                                <i class="fa fa-plus-square" aria-hidden="true"></i> 
-                                {{ container.questions.nested[0].hint }}
-                            </div>
-                        </div>
-                         <div *ngIf="container.checked">
-                            <div class="well">
+              <div *ngFor='let container of questionContainer, let i=index'>
 
-                                <label for="usr">{{ container.questions.response }}</label>
+                <span class="badge" style="margin-bottom: -20px; background-color: #000">
+                {{ container.key | uppercase}}
+                </span>
 
-                                        <input type="text" class="form-control"
-                                               [(ngModel)]="container.questions.response" >
-                             
-  
-                            </div>
-                        </div>
-                        </div>
+                <div class="checkbox pull-right">
+                <label>
+                <input  class="styled" 
+                        type="checkbox"
+                        [(ngModel)]=questionContainer[i].checked
+                        name="checkedVar"
+                        #checkedVar="ngModel" >
+                </label>
+                </div>
+
+                <div class="comment-block">
+                <p class="comment-text"> 
+                {{ questionContainer[i].question.question }}
+                </p>
+                <div class="bottom-comment">
+                <ul class="comment-actions">
+                    <li class="complain" role="button" data-toggle="collapse" 
+                        attr.href="#collapse-answer{{i}}" 
+                        aria-expanded="false" 
+                        attr.aria-controls="collapse-answer{{i}}">
+                        Answer
+                    </li>
+                    <li class="reply" role="button" data-toggle="collapse" 
+                        attr.href="#collapse-hint{{i}}" 
+                        aria-expanded="false" 
+                        attr.aria-controls="collapse-hint{{i}}">
+                        Hint
+                    </li>
+                    <li class="reply" role="button" data-toggle="collapse" 
+                        attr.href="#collapse-nested{{i}}" 
+                        aria-expanded="false" 
+                        attr.aria-controls="collapse-nested{{i}}">
+                        Nested
+                </ul>
+                </div>
+                </div>
+
+                <br>
+
+                <div class="collapse" id="collapse-answer{{i}}">
+                <div class="well">
+                    <i class="fa fa-arrow-circle-right" aria-hidden="true"></i> 
+                    {{ questionContainer[i].question.answer }}
+                </div>
+                </div>
+                <div class="collapse" id="collapse-hint{{i}}">
+                <div class="well">
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> 
+                    {{ questionContainer[i].question.hint }}
+                </div>
+                </div>
+                <div class="collapse" id="collapse-nested{{i}}">
+                <div class="well">
+                    <i class="fa fa-question-circle" aria-hidden="true"></i> 
+                    {{ questionContainer[i].question.nested[0].question }}
+                    <br>
+                    <i class="fa fa-plus-square" aria-hidden="true"></i> 
+                    {{ questionContainer[i].question.nested[0].hint }}
+                </div>
+                </div>
+                <div *ngIf="container.checked">
+                <div class="well">
+                    <label for="usr">Response: </label>
+                           <textarea class="form-control" 
+                               type="text" 
+                               required 
+                               rows="5"
+                               name="questionVar"
+                               [(ngModel)]=questionContainer[i].question.response
+                               #questionVar="ngModel">
+                            </textarea>
+                </div>
+                </div>
+
+                <hr>
               </div>
-              {{ interviewForm.value | json }}
-        </form>
-
+          </form>
+       {{ questionContainer | json}}
     </div>
-
 </div>
 

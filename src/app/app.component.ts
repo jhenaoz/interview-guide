@@ -1,7 +1,7 @@
+import { QuestionContainer } from './questionContainer';
 import { Question } from './question';
 import { Component, OnInit, OnChanges, Pipe, PipeTransform } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
-import { FormGroup, FormBuilder, FormArray } from '@angular/forms';
 import { Observable } from 'rxjs/Rx';
 
 import { Uploader  } from 'angular2-http-file-upload';
@@ -20,57 +20,28 @@ export class AppComponent implements OnInit, OnChanges  {
     private data;
     private keys = [];
     private checkedKeys = [];
-    private topics: Topic[] = [];
 
-    // Form variables
-    interviewForm: FormGroup;
+    private questionContainer: QuestionContainer[] = [];
 
     constructor(public uploaderService: Uploader,
-                private http: Http,
-                private fb: FormBuilder) {}
+                private http: Http) {}
 
 
     ngOnInit() {
-        // Form initialization
-        this.interviewForm = this.fb.group({
-            // Array of answered questions
-            questionContainer: this.fb.array([])
-        });
-    }
-
-    /*
-    * Method to get questionContaner form array
-    */
-    get questionContainer(): FormArray {
-        return <FormArray>this.interviewForm.get('questionContainer');
-    }
-
-
-    buildQuestionContainerFormControl(key: string, question: Question): FormGroup {
-        return this.fb.group({
-            key: key,
-            checked: false,
-            questions: question,
-        });
     }
 
     onSubmit() {
     }
 
-    test() {
-        console.log($('#comment-block00').text());
-        $('#badge00').addClass('hide');
-        $('#comment-block00').hide();
-    }
     print() {
         this.data = JSON.parse($('#text_helper').text());
         $('.step2').removeClass('hide');
         this.keys = this.getKeys(this.data);
     }
+
     generate() {
         $('.step2').find('*').prop('disabled', true);
         this.generateArray(this.data);
-        console.log(this.questionContainer.value);
     }
 
     ngOnChanges(e) {
@@ -91,32 +62,29 @@ export class AppComponent implements OnInit, OnChanges  {
     }
 
     generateArray(obj) {
-        this.topics = [];
+        this.questionContainer = [];
         for (const key in obj) {
             if (this.checkedKeys.indexOf(key) > -1) {
-                const topic = new Topic();
-                topic.key = key;
                 if (obj.hasOwnProperty(key)) {
-                    topic.questions = obj[key];
                     const temporalObject = obj[key];
                     for (const value in temporalObject) {
                         if (value) {
+                            const container = new QuestionContainer();
+                            container.key = key;
                             const question = new Question();
                             question.question = obj[key][value].question;
                             question.response = '';
                             question.answer = obj[key][value].answer;
                             question.hint = obj[key][value].hint;
                             question.nested = obj[key][value].nested;
-                            this.questionContainer.push(
-                                this.buildQuestionContainerFormControl(key, question));
-                            this.topics.push(topic);
+                            container.question = question;
+                            container.checked = false;
+                            this.questionContainer.push(container);
                         }
                     }
                 }
             }
         }
-
-        console.log(this.topics)
     }
 
     getKeys(obj) {
