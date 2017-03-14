@@ -95,11 +95,25 @@ export class AppComponent implements OnInit, OnChanges  {
         console.log(e)
     }
 
-    private logCheckbox(element: HTMLInputElement): void {
+    logCheckbox(element: HTMLInputElement): void {
         if (element.checked) {
             this.checkedKeys.push(element.value);
         } else {
             this.checkedKeys = this.checkedKeys.filter(function(e) { return e !== element.value; });
         }
+    }
+
+    generateReport() {
+        const reportArray = [];
+        for (let i = 0; i < this.questionContainer.length; i++) {
+           if (this.questionContainer[i].checked) {
+               const report = { key: '', question: '', response: ''}
+               report.key = this.questionContainer[i].key;
+               report.question = this.questionContainer[i].question.question;
+               report.response = this.questionContainer[i].question.response;
+               reportArray.push(report);
+           }
+        }
+        console.log(reportArray);
     }
 }
