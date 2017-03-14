@@ -116,6 +116,14 @@
                         aria-expanded="false" 
                         attr.aria-controls="collapse-nested{{i}}">
                         Nested
+                    </li>
+                    <li *ngIf="container.checked"
+                        class="reply" role="button" data-toggle="collapse" 
+                        attr.href="#collapse-response{{i}}" 
+                        aria-expanded="false" 
+                        attr.aria-controls="collapse-response{{i}}">
+                        Response
+                    </li>
                 </ul>
                 </div>
                 </div>
@@ -143,7 +151,7 @@
                     {{ questionContainer[i].question.nested[0].hint }}
                 </div>
                 </div>
-                <div *ngIf="container.checked">
+                <div class="collapse" id="collapse-response{{i}}">
                 <div class="well">
                     <label for="usr">Response: </label>
                            <textarea class="form-control" 
@@ -160,6 +168,7 @@
                 <hr>
               </div>
           </form>
+          {{ questionContainer | json }}
     </div>
 </div>
 
